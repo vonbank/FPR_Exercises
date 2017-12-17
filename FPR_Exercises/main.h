@@ -1,10 +1,13 @@
 #pragma once
+
 #include <vector>
 #include <iostream>
 #include <string>
+#include <tuple>
 #include "Exercise1.h"
 #include "Exercise2.h"
 #include "Exercise3.h"
+#include "Exercise4.h"
 
 template <typename T>
 void exerciseOutput(std::string exerciseText, std::vector<T> input, std::vector<T> output)

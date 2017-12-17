@@ -121,6 +121,7 @@
     <ClInclude Include="Exercise1.h" />
     <ClInclude Include="Exercise2.h" />
     <ClInclude Include="Exercise3.h" />
+    <ClInclude Include="Exercise4.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

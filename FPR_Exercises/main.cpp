@@ -15,6 +15,36 @@ int f_ex3_int(int x, int y) { return x + y; }
 std::string f_ex3_str(std::string x, std::string y) { return x + y; }
 double f_ex3_dbl(double x, double y) { return x * y; }
 
+// functions for exercise 4
+bool qs_trivial(std::vector<int> x) { return x.size() <= 1; }
+std::vector<int> sq_solve(std::vector<int> x) { return x; }
+std::pair<std::vector<int>, std::vector<int>> qs_divide(std::vector<int> x)
+{
+	std::vector<int> left;
+	std::vector<int> right;
+	
+	int pivot = x.front;
+
+	
+
+	return std::pair<std::vector<int>, std::vector<int>>(left, right);
+}
+std::pair<std::vector<int>, std::vector<int>> qs_recursiveSplit(std::vector<int> left, std::vector<int> right, int pivot)
+{
+	std::vector<int> left;
+	std::vector<int> right;
+
+
+
+	return std::pair<std::vector<int>, std::vector<int>>(left, right);
+}
+
+std::vector<int> qs_combine(std::vector<int> x, std::vector<int> y) 
+{ 
+	x.insert(x.end(), y.begin(), y.end());
+	return x;
+}
+
 int main()
 {
 	std::vector<int> v_int = { 1, 2, 3, 4, 5 };

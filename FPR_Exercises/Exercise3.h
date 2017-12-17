@@ -5,15 +5,13 @@
 template <typename T>
 std::vector<T> scan(T(*f)(T, T), T initialScanValue, std::vector<T> input)
 {
-	return applyScan(f, initialScanValue, input, 0);
-}
-
-template <typename T>
-std::vector<T> applyScan(T(*f)(T, T), T initialScanValue, std::vector<T> input, unsigned int index)
-{
-	input[index] = f(initialScanValue, input[index]);
-	if (index < input.size() - 1)
-		return applyScan(f, input[index], input, index + 1);
+	if (input.size() > 1)
+	{
+		std::vector<T> tmp = scan(f, f(initialScanValue, input.front()), std::vector<T>(input.begin() + 1, input.end()));
+		std::vector<T> output = { f(initialScanValue, input.front()) };
+		output.insert(output.end(), tmp.begin(), tmp.end());
+		return output;
+	}
 	else
-		return input;
+		return std::vector<T> { f(initialScanValue, input.front()) };
 }

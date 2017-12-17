@@ -4,14 +4,8 @@
 template <typename T>
 T fold(T(*f)(T, T), T initialFoldValue, std::vector<T> input)
 {
-	return applyFold(f, initialFoldValue, input, 0);
-}
-
-template <typename T>
-T applyFold(T(*f)(T, T), T initialFoldValue, std::vector<T> input, unsigned int index)
-{
-	if (index < input.size() - 1)
-		return applyFold(f, f(initialFoldValue, input[index]), input, index + 1);
+	if (input.size() > 1)
+		return fold(f, f(initialFoldValue, input.front()), std::vector<T>(input.begin() + 1, input.end()));
 	else
-		return f(initialFoldValue, input[index]);
+		return f(initialFoldValue, input.front());
 }
