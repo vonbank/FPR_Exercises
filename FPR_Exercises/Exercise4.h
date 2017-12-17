@@ -9,9 +9,7 @@ T2 divideAndConquer(bool (*trivial)(T1), T2 (*solve)(T1), std::pair<T1, T1> (*di
 	else
 	{
 		std::pair<T1, T1> division = divide(input);
-		return combine(_
-			divideAndConquer(trivial, solve, divide, combine, std::get<0>(divison)), _
-			divideAndConquer(trivial, solve, divide, combine, std::get<1>(divison)));
+		return combine( divideAndConquer(trivial, solve, divide, combine, std::get<0>(division)), divideAndConquer(trivial, solve, divide, combine, std::get<1>(division)));
 	}
 }
 

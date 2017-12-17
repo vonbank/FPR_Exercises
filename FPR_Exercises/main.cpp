@@ -16,27 +16,41 @@ std::string f_ex3_str(std::string x, std::string y) { return x + y; }
 double f_ex3_dbl(double x, double y) { return x * y; }
 
 // functions for exercise 4
-bool qs_trivial(std::vector<int> x) { return x.size() <= 1; }
-std::vector<int> sq_solve(std::vector<int> x) { return x; }
+bool qs_trivial(std::vector<int> x) { return x.size() <= 2; }
+std::vector<int> qs_solve(std::vector<int> x)
+{ 
+	if (x.size() <= 1)
+		return x;
+	else
+	{
+		if (x.front() > x.back())
+			return std::vector<int> {x.back(), x.front() };
+		else
+			return x;
+	}
+}
+std::pair<std::vector<int>, std::vector<int>> qs_recursiveSplit(std::vector<int> left, std::vector<int> right, int pivot, std::vector<int> x)
+{
+
+	if (x.front() <= pivot)
+		left.push_back(x.front());
+	else
+		right.push_back(x.front());
+
+	if (x.size() > 1)
+	{
+		return qs_recursiveSplit(left, right, pivot, std::vector<int>(x.begin() + 1, x.end()));
+	}
+	else
+	{
+		return std::make_pair(left, right);
+	}
+			
+}
 std::pair<std::vector<int>, std::vector<int>> qs_divide(std::vector<int> x)
 {
-	std::vector<int> left;
-	std::vector<int> right;
-	
-	int pivot = x.front;
-
-	
-
-	return std::pair<std::vector<int>, std::vector<int>>(left, right);
-}
-std::pair<std::vector<int>, std::vector<int>> qs_recursiveSplit(std::vector<int> left, std::vector<int> right, int pivot)
-{
-	std::vector<int> left;
-	std::vector<int> right;
-
-
-
-	return std::pair<std::vector<int>, std::vector<int>>(left, right);
+	int pivot = x[(int)(x.size()/2)];
+	return qs_recursiveSplit(std::vector<int>(), std::vector<int>(), pivot, x);
 }
 
 std::vector<int> qs_combine(std::vector<int> x, std::vector<int> y) 
@@ -80,6 +94,11 @@ int main()
 
 	std::vector<double> v_ex3_dbl_out = scan<double>(f_ex3_dbl, 0.137, v_dbl);
 	exerciseOutput<double>("Exercise 03 <double>", v_dbl, v_ex3_dbl_out);
+
+	// Exercise 04
+	std::vector<int> sortMe = { 3, 1, 2, 4,7,2,0,4,7,2,4,8,2,7,2,34,6,1,8};
+	std::vector<int> v_ex4_int_out = divideAndConquer(qs_trivial, qs_solve, qs_divide, qs_combine, sortMe);
+	exerciseOutput<int>("Exercise 03 <int> Quicksort", sortMe, v_ex4_int_out);
 
 	std::cin.get();
 	return 0;
