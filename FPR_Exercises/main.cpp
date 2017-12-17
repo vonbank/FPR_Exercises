@@ -56,8 +56,19 @@ int main()
 	std::vector<int> v_ex4_int_out = divideAndConquer<std::vector<int>, std::vector<int>>(qs_trivial<int>, qs_solve<int>, qs_divide<int>, qs_combine<int>, sortMe);
 	exerciseOutput<int>("Exercise 04 <int> Quicksort", sortMe, v_ex4_int_out);
 
+	binSearchParams<int> ex4_int_param;
+	ex4_int_param.input = v_ex4_int_out;
+	ex4_int_param.value = 5;
+	ex4_int_param.l = 0;
+	ex4_int_param.r = v_ex4_int_out.size() - 1;
+
+	std::vector<int> v_ex_binSearch_out = divideAndConquer<binSearchParams<int>, std::vector<int>>(binsearch_trivial<int>, binsearch_solve<int>, binsearch_divide<int>, binsearch_combine, ex4_int_param);
+	exerciseOutput<int>("Exercise 04 <int> BinarySearch (index of 5)", v_ex4_int_out, v_ex_binSearch_out);
+
 	std::vector<int> v_ex4_int_multiplication_out = { divideAndConquer<std::vector<int>, int>(mult_trivial<int>, mult_solve<int>, mult_divide<int>, mult_combine<int>, sortMe) };
 	exerciseOutput<int>("Exercise 04 <int> Multiplication", sortMe, v_ex4_int_multiplication_out);
 	std::cin.get();
+
+
 	return 0;
 }

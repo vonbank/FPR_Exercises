@@ -9,6 +9,7 @@
 #include "Exercise3.h"
 #include "Exercise4.h"
 
+// function for convenient output
 template <typename T>
 void exerciseOutput(std::string exerciseText, std::vector<T> input, std::vector<T> output)
 {

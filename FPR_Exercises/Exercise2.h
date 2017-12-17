@@ -4,8 +4,9 @@
 template <typename T>
 T fold(T(*f)(T, T), T initialFoldValue, std::vector<T> input)
 {
-	if (input.size() > 1)
+	if (input.size() > 1) // break recursion on last element
+		// call fold for the next element and use f of initialFoldValue and current value as new initialFoldValue
 		return fold(f, f(initialFoldValue, input.front()), std::vector<T>(input.begin() + 1, input.end()));
 	else
-		return f(initialFoldValue, input.front());
+		return f(initialFoldValue, input.front()); // last element -> return complete fold result
 }
