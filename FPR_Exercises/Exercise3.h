@@ -9,8 +9,8 @@ std::vector<T> scan(T(*f)(T, T), T initialScanValue, std::vector<T> input)
 	{
 		T calculatedValue = f(initialScanValue, input.front());
 		std::vector<T> tmp = scan(f, calculatedValue, std::vector<T>(input.begin() + 1, input.end()));
-		std::vector<T> output = {};
-		output.insert(output.end(), tmp.begin(), tmp.end());
+		std::vector<T> output = { calculatedValue };
+		output.insert(tmp.begin(), tmp.end());
 		return output;
 	}
 	else
