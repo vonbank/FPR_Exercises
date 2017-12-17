@@ -2,7 +2,7 @@
 // Pure Polymorphic Fold
 // fold :: (a -> a -> a) -> a -> [a] -> a
 template <typename T>
-T fold(T(*f)(T, T), T initialFoldValue, std::vector<T> input)
+T fold(std::function<T(T, T)> f, T initialFoldValue, std::vector<T> input)
 {
 	if (input.size() > 1) // break recursion on last element
 		// call fold for the next element and use f of initialFoldValue and current value as new initialFoldValue

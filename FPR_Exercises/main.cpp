@@ -22,13 +22,13 @@ int main()
 	std::vector<double> v_dbl = { 0.2, 1.4, 2.654 };
 
 	// Exercise 01
-	std::vector<int> v_ex1_int_out = map<int>(f_ex1_int, v_int);
+	std::vector<int> v_ex1_int_out = map<int, int>(f_ex1_int, v_int);
 	exerciseOutput<int>("Exercise 01 <int>", v_int, v_ex1_int_out);
 
-	std::vector<std::string> v_ex1_str_out = map<std::string>(f_ex1_str, v_str);
+	std::vector<std::string> v_ex1_str_out = map<std::string, std::string>(f_ex1_str, v_str);
 	exerciseOutput<std::string>("Exercise 01 <string>", v_str, v_ex1_str_out);
 	
-	std::vector<double> v_ex1_dbl_out = map<double>(f_ex1_dbl, v_dbl);
+	std::vector<double> v_ex1_dbl_out = map<double, double>(f_ex1_dbl, v_dbl);
 	exerciseOutput<double>("Exercise 01 <double>", v_dbl, v_ex1_dbl_out);
 
 	// Exercise 02
@@ -42,13 +42,13 @@ int main()
 	exerciseOutput<double>("Exercise 02 <double>", v_dbl, v_ex2_dbl_out);
 
 	// Exercise 03
-	std::vector<int> v_ex3_int_out = scan<int>(f_ex3_int, 0, v_int);
+	std::vector<int> v_ex3_int_out = scan<int, int>(f_ex3_int, 0, v_int);
 	exerciseOutput<int>("Exercise 03 <int>", v_int, v_ex3_int_out);
 
-	std::vector<std::string> v_ex3_str_out = scan<std::string>(f_ex3_str, "init", v_str);
+	std::vector<std::string> v_ex3_str_out = scan<std::string, std::string>(f_ex3_str, "init", v_str);
 	exerciseOutput<std::string>("Exercise 03 <string>", v_str, v_ex3_str_out);
 
-	std::vector<double> v_ex3_dbl_out = scan<double>(f_ex3_dbl, 0.137, v_dbl);
+	std::vector<double> v_ex3_dbl_out = scan<double, double>(f_ex3_dbl, 0.137, v_dbl);
 	exerciseOutput<double>("Exercise 03 <double>", v_dbl, v_ex3_dbl_out);
 
 	// Exercise 04

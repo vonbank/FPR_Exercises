@@ -2,7 +2,12 @@
 // Higher-Order Divide and Conquer
 
 template <typename T1, typename T2>
-T2 divideAndConquer(bool (*trivial)(T1), T2 (*solve)(T1), std::pair<T1, T1> (*divide)(T1), T2 (*combine)(T2, T2), T1 input)
+T2 divideAndConquer(
+	std::function<bool(T1)> trivial, 
+	std::function<T2(T1)> solve, 
+	std::function<std::pair<T1, T1>(T1)> divide, 
+	std::function<T2(T2, T2)> combine, 
+	T1 input)
 {
 	// if trivial just solve it
 	if (trivial(input))

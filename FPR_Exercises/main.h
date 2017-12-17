@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <tuple>
+#include <functional>
 #include "Exercise1.h"
 #include "Exercise2.h"
 #include "Exercise3.h"
