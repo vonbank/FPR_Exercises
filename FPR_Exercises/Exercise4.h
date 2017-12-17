@@ -9,7 +9,7 @@ T2 divideAndConquer(bool (*trivial)(T1), T2 (*solve)(T1), std::pair<T1, T1> (*di
 	else
 	{
 		std::pair<T1, T1> division = divide(input);
-		return combine( divideAndConquer(trivial, solve, divide, combine, std::get<0>(division)), divideAndConquer(trivial, solve, divide, combine, std::get<1>(division)));
+		return combine( divideAndConquer(trivial, solve, divide, combine, division.first), divideAndConquer(trivial, solve, divide, combine, division.second));
 	}
 }
 
@@ -64,17 +64,66 @@ std::pair<std::vector<T>, std::vector<T>> qs_recursiveSplit(std::vector<T> left,
 }
 
 template <typename T>
-std::pair<std::vector<int>, std::vector<T>> qs_divide(std::vector<T> x)
+std::pair<std::vector<T>, std::vector<T>> qs_divide(std::vector<T> x)
 {
 	T pivot = x.back();
 	return qs_recursiveSplit(std::vector<T>(), std::vector<T>(), std::vector<T>(), pivot, x);
 }
 
 template <typename T>
-std::vector<int> qs_combine(std::vector<T> x, std::vector<T> y)
+std::vector<T> qs_combine(std::vector<T> x, std::vector<T> y)
 {
 	x.insert(x.end(), y.begin(), y.end());
 	return x;
 }
 #pragma endregion
+
+#pragma region MULTIPLICATION
+template <typename T>
+bool mult_trivial(std::vector<T> x)
+{
+	if (x.size() <= 1)
+		return true;
+	else
+		return false;
+}
+
+template <typename T>
+T mult_solve(std::vector<T> x)
+{
+	if (x.size() == 0)
+		return 1;
+	else
+		return x.front();
+}
+
+template <typename T>
+std::pair<std::vector<T>, std::vector<T>> mult_recursiveSplit(std::vector<T> left, std::vector<T> right, std::vector<T> x)
+{
+	if (left.size() > right.size())
+		right.push_back(x.front());
+	else
+		left.push_back(x.front());
+
+	if (x.size() > 1)
+		return mult_recursiveSplit(left, right, std::vector<T>(x.begin() + 1, x.end()));
+	else
+		return std::make_pair(left, right);
+}
+
+template <typename T>
+std::pair<std::vector<T>, std::vector<T>> mult_divide(std::vector<T> x)
+{
+	T pivot = x.back();
+	return mult_recursiveSplit(std::vector<T>(), std::vector<T>(), x);
+}
+
+template <typename T>
+T mult_combine(T x, T y)
+{	
+	return x * y;
+}
+#pragma endregion
+
+
 

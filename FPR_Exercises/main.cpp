@@ -15,9 +15,6 @@ int f_ex3_int(int x, int y) { return x + y; }
 std::string f_ex3_str(std::string x, std::string y) { return x + y; }
 double f_ex3_dbl(double x, double y) { return x * y; }
 
-// functions for exercise 4
-
-
 int main()
 {
 	std::vector<int> v_int = { 1, 2, 3, 4, 5 };
@@ -55,10 +52,12 @@ int main()
 	exerciseOutput<double>("Exercise 03 <double>", v_dbl, v_ex3_dbl_out);
 
 	// Exercise 04
-	std::vector<int> sortMe = { 3, 5, 8, 6, 1, 5, 0, 9, 5, 3, 7, 3, 5 };
-	std::vector<int> v_ex4_int_out = divideAndConquer(qs_trivial<int>, qs_solve<int>, qs_divide<int>, qs_combine<int>, sortMe);
-	exerciseOutput<int>("Exercise 03 <int> Quicksort", sortMe, v_ex4_int_out);
+	std::vector<int> sortMe = { 3, 5, 8, 6, 1, 5, 4, 9, 5, 3, 7, 3, 5 };
+	std::vector<int> v_ex4_int_out = divideAndConquer<std::vector<int>, std::vector<int>>(qs_trivial<int>, qs_solve<int>, qs_divide<int>, qs_combine<int>, sortMe);
+	exerciseOutput<int>("Exercise 04 <int> Quicksort", sortMe, v_ex4_int_out);
 
+	std::vector<int> v_ex4_int_multiplication_out = { divideAndConquer<std::vector<int>, int>(mult_trivial<int>, mult_solve<int>, mult_divide<int>, mult_combine<int>, sortMe) };
+	exerciseOutput<int>("Exercise 04 <int> Multiplication", sortMe, v_ex4_int_multiplication_out);
 	std::cin.get();
 	return 0;
 }
